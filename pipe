@@ -1,0 +1,45 @@
+pipeline {
+
+	agent any
+
+	stages {
+
+    	stage('Checkout') {
+
+        	steps {
+
+            	git branch: 'main', url: 'https://github.com/azadCMRIT/hello-maven.git' // Replace with your repository URL
+
+        	}
+
+    	}
+
+    	stage('Build') {
+
+        	steps {
+
+            	// Use 'mvn clean package' for Maven or 'gradle build' for Gradle
+
+            	sh 'mvn clean package'
+
+        	}
+
+    	}
+
+    	stage('Test') {
+
+        	steps {
+
+            	// Run unit tests using Maven or Gradle
+
+            	sh 'mvn test'
+
+        	}
+
+    	}
+
+    	// Add additional stages for deployment, code analysis, etc. as needed
+
+	}
+
+}
